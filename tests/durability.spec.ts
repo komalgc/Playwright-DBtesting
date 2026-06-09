@@ -1,6 +1,28 @@
 import { test, expect } from '@playwright/test';
 import { getDbClient } from '../utils/dbClient';
 
+/*Durability Testing */
+
+// Property: Once data is committed, it should remain saved even after restart or failure.
+
+/****
+ Order flow:
+
+1. Create an order successfully.
+2. Restart backend service.
+3. Verify order is still present.
+
+Now force failure at payment step.
+
+Expected result:
+
+Order still exists
+Status remains correct
+No data corruption
+Created timestamp is preserved
+
+***/
+
 
 test('durability - committed order should persist after service restart', async ({ request }) => {
   const db = await getDbClient();
