@@ -13,6 +13,15 @@ import { getDbClient } from '../utils/dbClient';
 3. Create payment record
 4. Send confirmation
 
+Now force failure at payment step.
+
+Expected result:
+
+No half-created order
+Inventory should not be reduced
+Payment record should not exist
+Order status should not be CREATED
+
 ***/
 
 
