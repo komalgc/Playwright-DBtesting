@@ -1,5 +1,36 @@
 {
-  "compilerOptions": {
-    "types": ["node"]
-  }
+ 
+"compilerOptions": {
+ 
+"target": "ES2019", //Which JavaScript version to compile to
+
+ 
+"module": "commonjs", //Module system to use
+
+ 
+"strict": true, //Enable all strict type checking
+
+ 
+"esModuleInterop": true,
+ 
+"skipLibCheck": true,
+ 
+"forceConsistentCasingInFileNames": true,
+ 
+"resolveJsonModule": true,
+ 
+"outDir": "./dist",
+ 
+"rootDir": ".",
+ 
+"types": ["node", "@playwright/test"] // Provides auto-completion for Node.js and Playwright
+
+ 
+},
+ 
+"include": ["**/*.ts"],
+ 
+"exclude": ["node_modules"]
+ 
 }
+

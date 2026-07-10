@@ -11,6 +11,22 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+// Determine which site to test based on environment variable
+
+const getBaseURL = () => {
+const site = process.env.TEST_SITE || 'saucedemo';
+const urls = {
+saucedemo: 'https://www.saucedemo.com',
+todomvc: 'https://demo.playwright.dev/todomvc',
+automationexercise: 'https://automationexercise.com',
+theinternet: 'https://the-internet.herokuapp.com'
+};
+
+return urls[site as keyof typeof urls] || urls.saucedemo;
+
+};
+
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -23,13 +39,27 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  timeout : 30 * 1000,
+  expect: {
+
+timeout: 5000 // 5 seconds
+
+},
+
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
+    baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    viewport: { width: 1280, height: 720 },
+    actionTimeout: 10 * 1000, // 10 seconds
+    navigationTimeout: 30 * 1000, // 30 seconds
+
   },
 
   /* Configure projects for major browsers */
@@ -37,16 +67,6 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
     },
 
     /* Test against mobile viewports. */
