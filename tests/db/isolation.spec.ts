@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { getDbClient } from '../utils/dbClient';
+import { getDbClient } from '../../utils/dbClient';
 
 test('isolation - two users should not book same ticket', async ({ request }) => {
   const ticketId = 501;

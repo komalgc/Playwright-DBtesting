@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { getDbClient } from '../utils/dbClient';
+import { getDbClient } from '../../utils/dbClient';
 
 /*Durability Testing */
 

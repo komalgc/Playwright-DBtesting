@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { getDbClient } from '../utils/dbClient';
-import { getLatestOrderStatus } from '../utils/dbQueries';
+import { getDbClient } from '../../utils/dbClient';
+import { getLatestOrderStatus } from '../../utils/dbQueries';
 
 test('verify order status in database', async ({ page }) => {
   const db = await getDbClient();

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { getDbClient } from '../utils/dbClient';
+import { getDbClient } from '../../utils/dbClient';
 
 test('consistency - should not allow negative quantity', async ({ request }) => {
   const db = await getDbClient();
