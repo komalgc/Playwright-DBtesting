@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pageobjects/saucedemo/LoginPage';
 import { ProductsPage } from '../../pageobjects/saucedemo/ProductsPage';
 import { CartPage } from '../../pageobjects/saucedemo/CartPage';
-import { CheckoutPage } from '../../pageobjects/saucedemo/CheckoutPage';
+import { CheckoutPage, CheckoutInfo } from '../../pageobjects/saucedemo/CheckoutPage';
  
 test.describe('SauceDemo End-to-End Checkout Flow', () => {
  
@@ -31,7 +31,13 @@ expect(itemNames).toContain('Sauce Labs Bike Light');
 await cartPage.clickCheckout();
 // Step 6: Fill shipping information
 const checkoutPage = new CheckoutPage(page);
-await checkoutPage.fillShippingInformation('John', 'Doe', '12345');
+const shippingInfo: CheckoutInfo = {
+firstName: 'John', 
+lastName: 'Doe',
+postalCode: '12345'
+};
+
+await checkoutPage.fillShippingInformation(shippingInfo);
 await checkoutPage.clickContinue();
 // Step 7: Complete order
 await checkoutPage.clickFinish();
@@ -53,7 +59,12 @@ await productsPage.clickShoppingCart();
 const cartPage = new CartPage(page);
 await cartPage.clickCheckout();
 const checkoutPage = new CheckoutPage(page);
-await checkoutPage.fillShippingInformation('Jane', 'Smith', '54321');
+const shippingInfo: CheckoutInfo = {
+firstName: 'John', 
+lastName: 'Doe',
+postalCode: '12345'
+};
+await checkoutPage.fillShippingInformation(shippingInfo);
 await checkoutPage.clickContinue();
 await checkoutPage.clickFinish();
 const completeMessage = await checkoutPage.getCompleteMessage();

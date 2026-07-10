@@ -1,5 +1,11 @@
 import { Page, Locator } from '@playwright/test';
+
+export interface CheckoutInfo { 
+firstName: string;
+lastName: string;
+postalCode: string;
  
+}
 export class CheckoutPage {
  
 readonly page: Page;
@@ -12,6 +18,7 @@ readonly completeHeader: Locator;
 readonly completeText: Locator;
 readonly backHomeButton: Locator;
 readonly errorMessage: Locator;
+
 
 constructor(page: Page) {
  
@@ -27,10 +34,13 @@ this.backHomeButton = page.locator('#back-to-products');
 this.errorMessage = page.locator('[data-test="error"]'); 
 }
  
-async fillShippingInformation(firstName: string, lastName: string, postalCode: string) {
-await this.firstNameInput.fill(firstName);
-await this.lastNameInput.fill(lastName);
-await this.postalCodeInput.fill(postalCode);
+
+
+
+async fillShippingInformation(info: CheckoutInfo) {
+await this.firstNameInput.fill(info.firstName);
+await this.lastNameInput.fill(info.lastName);
+await this.postalCodeInput.fill(info.postalCode);
 }
 
 async clickContinue() {
