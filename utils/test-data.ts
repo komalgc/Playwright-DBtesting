@@ -7,38 +7,31 @@ dotenv.config();
 export const SauceDemoUsers = {
  
 standard: {
-username: process.env.SAUCEDEMO_STANDARD_USER || 'standard_user',
- 
+username: process.env.SAUCEDEMO_STANDARD_USER || 'standard_user', 
 password: process.env.SAUCEDEMO_PASSWORD || 'secret_sauce'
- 
 },
  
 locked: {
- 
 username: process.env.SAUCEDEMO_LOCKED_USER || 'locked_out_user',
- 
 password: process.env.SAUCEDEMO_PASSWORD || 'secret_sauce'
- 
 },
  
-problem: {
- 
+problem: { 
 username: process.env.SAUCEDEMO_PROBLEM_USER || 'problem_user',
- 
 password: process.env.SAUCEDEMO_PASSWORD || 'secret_sauce'
- 
+},
+
+invalid: {
+username: process.env.SAUCEDEMO_INVALID_USER || 'invalid_user',
+password : process.env.SAUCEDEMO_INVALID_PASSWORD || 'wrong_password'
 }
  
 };
  
 export const TestURLs = {
- 
 sauceDemo: process.env.BASE_URL || 'https://www.saucedemo.com',
- 
 todoMVC: process.env.TODOMVC_BASE_URL || 'https://demo.playwright.dev/todomvc',
- 
-theInternet: 'https://the-internet.herokuapp.com'
- 
+theInternet: 'https://the-internet.herokuapp.com' 
 };
  
 export const APIEndpoints = {
