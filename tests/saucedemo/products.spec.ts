@@ -2,6 +2,7 @@ import {test, expect} from '@playwright/test'
 import { SauceDemoUsers } from '../../utils/test-data';
 import { LoginPage } from '../../pageobjects/saucedemo/LoginPage';
 import { ProductsPage } from '../../pageobjects/saucedemo/ProductsPage';
+import { SortOption } from '../../utils/saucedemo-data';
 
 test.describe('SauceDemo Products Tests', () => {
  
@@ -45,7 +46,7 @@ expect(cartCount).toBe('0');
 
 test('can sort products by name A-Z', async ({ page }) => {
 const productsPage = new ProductsPage(page);
-await productsPage.sortBy('az');
+await productsPage.sortBy(SortOption.NAME_ASC);
 const productNames = await productsPage.getProductNameS();
 expect(productNames[0]).toBe('Sauce Labs Backpack');
  
@@ -53,7 +54,7 @@ expect(productNames[0]).toBe('Sauce Labs Backpack');
  
 test('can sort products by price low to high', async ({ page }) => {
 const productsPage = new ProductsPage(page);
-await productsPage.sortBy('lohi');
+await productsPage.sortBy(SortOption.PRICE_LOW_HIGH);
 const firstProductPrice = await productsPage.getProductPrice('Sauce Labs Onesie');
 expect(firstProductPrice).toContain('$7.99');
 });

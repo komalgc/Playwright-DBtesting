@@ -1,4 +1,5 @@
 import {Page, Locator} from '@playwright/test'
+import { SortOption } from '../../utils/saucedemo-data';
 
 export class ProductsPage {
     readonly page : Page;
@@ -61,7 +62,7 @@ return '0';
 await this.shoppingCartLink.click() 
 }
  
-async sortBy(option: string) { 
+async sortBy(option: SortOption) { 
 await this.sortDropdown.selectOption(option);
 }
 
